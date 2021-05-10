@@ -1,0 +1,35 @@
+{
+    "name": "social-login",
+    "version": "1.0.0",
+    "description": "Utils for social Login",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/staslyzak/social-login.git"
+    },
+    "keywords": [
+        "react-hook",
+        "social-login",
+        "react-social-login"
+    ],
+    "scripts": {
+        "build": "webpack-cli --config webpack.config.dist.js",
+        "start": "webpack-cli serve --config webpack.config.js"
+    },
+    "peerDependencies": {
+        "query-string": "^7.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.14.0",
+        "@babel/preset-react": "^7.13.13",
+        "babel-loader": "^8.2.2",
+        "query-string": "^7.0.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-router-dom": "^5.2.0",
+        "webpack": "^5.36.2",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-server": "^3.11.2"
+    }
+}
