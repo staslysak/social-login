@@ -9,14 +9,7 @@ export const handleRedirect = (from = 'OAUTH_REDIRECT') => {
         errorMessage = 'Login failed. Please try again.',
         state,
         code,
-        linkedin_redirect_url,
     } = qs.parse(window.location.search);
-
-    if (state && state.includes('native')) {
-        const [, nativeAppUri] = state.split('-'); //'exp://login'
-        window.location.href = nativeAppUri + window.location.search;
-        return;
-    }
 
     if (error || code) {
         if (window.opener) {
@@ -43,10 +36,6 @@ export const handleRedirect = (from = 'OAUTH_REDIRECT') => {
             window.close();
         }
     }
-
-    if (linkedin_redirect_url) {
-        window.location.href = linkedin_redirect_url;
-    }
 };
 
 export const handleSocialLogin = ({
@@ -61,14 +50,16 @@ export const handleSocialLogin = ({
     onFailure = () => {},
 }) => {
     const handleLogin = () => {
+        const uri = getSocialUri({
+            provider,
+            scope,
+            clientId,
+            redirectUri,
+            state: state || 'STATE',
+        });
+
         Popup.open({
-            uri: getSocialUri({
-                provider,
-                scope,
-                clientId,
-                redirectUri,
-                state: state || Math.random().toString(32),
-            }),
+            uri,
             onSuccess,
             onFailure,
         });
